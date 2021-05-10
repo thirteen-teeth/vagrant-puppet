@@ -5,9 +5,6 @@
 		},
 		{
 			"path": "../my-control-repo/control-repo"
-		},
-		{
-			"path": "../puppetlabs-puppetdb"
 		}
 	],
 	"settings": {}
