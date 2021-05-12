@@ -56,7 +56,7 @@ sources:
     basedir: '/etc/puppetlabs/code/environments'
 EOF
 
-#/opt/puppetlabs/puppet/bin/r10k deploy environment -p -v
+/opt/puppetlabs/puppet/bin/r10k deploy environment -p -v
 
 systemctl start puppetserver
 systemctl enable puppetserver
