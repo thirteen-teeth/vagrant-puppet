@@ -30,4 +30,18 @@ Vagrant.configure("2") do |config|
     node.vm.provision "hosts", sync_hosts: true
   end
 
+  vmname = "kafka-host"
+  config.vm.define "#{vmname}" do |node|
+    node.vm.box = "ol8"
+    node.vm.box_url = "https://yum.oracle.com/boxes/oraclelinux/ol80/ol80.box"
+    node.vm.hostname = "#{vmname}.puppetdomain"
+    node.vm.network "private_network", ip: "10.0.0.12"
+    node.vm.provider "virtualbox" do |v|
+      v.memory = 1024
+      v.cpus = 4
+    end
+    node.vm.provision "shell", path: "#{vmname}-provision.sh"
+    node.vm.provision "hosts", sync_hosts: true
+  end
+
 end
