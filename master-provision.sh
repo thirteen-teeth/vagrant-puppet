@@ -1,4 +1,5 @@
 #!/bin/bash
+# https://rpmfind.net/linux/mageia/distrib/8/x86_64/media/core/release/xmessage-1.0.5-3.mga8.x86_64.rpm
 
 start_time="$(date +%s)"
 

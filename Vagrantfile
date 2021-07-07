@@ -17,10 +17,11 @@ Vagrant.configure("2") do |config|
     node.vm.provision "hosts", sync_hosts: true
   end
 
-  config.vm.define "agent" do |node|
+  vmname = "kafka-host"
+  config.vm.define "#{vmname}" do |node|
     node.vm.box = "ol8"
     node.vm.box_url = "https://yum.oracle.com/boxes/oraclelinux/ol80/ol80.box"
-    node.vm.hostname = "agent.puppetdomain"
+    node.vm.hostname = "#{vmname}.puppetdomain"
     node.vm.network "private_network", ip: "10.0.0.11"
     node.vm.provider "virtualbox" do |v|
       v.memory = 1024
@@ -30,7 +31,7 @@ Vagrant.configure("2") do |config|
     node.vm.provision "hosts", sync_hosts: true
   end
 
-  vmname = "kafka-host"
+  vmname = "kafka-mirror"
   config.vm.define "#{vmname}" do |node|
     node.vm.box = "ol8"
     node.vm.box_url = "https://yum.oracle.com/boxes/oraclelinux/ol80/ol80.box"
@@ -40,7 +41,21 @@ Vagrant.configure("2") do |config|
       v.memory = 1024
       v.cpus = 4
     end
-    node.vm.provision "shell", path: "#{vmname}-provision.sh"
+    node.vm.provision "shell", path: "agent-provision.sh"
+    node.vm.provision "hosts", sync_hosts: true
+  end
+
+  vmname = "kafka-target"
+  config.vm.define "#{vmname}" do |node|
+    node.vm.box = "ol8"
+    node.vm.box_url = "https://yum.oracle.com/boxes/oraclelinux/ol80/ol80.box"
+    node.vm.hostname = "#{vmname}.puppetdomain"
+    node.vm.network "private_network", ip: "10.0.0.13"
+    node.vm.provider "virtualbox" do |v|
+      v.memory = 1024
+      v.cpus = 4
+    end
+    node.vm.provision "shell", path: "agent-provision.sh"
     node.vm.provision "hosts", sync_hosts: true
   end
 
