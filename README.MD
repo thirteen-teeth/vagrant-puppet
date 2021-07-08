@@ -9,9 +9,9 @@ This README assumes the user is using macOS
 ```bash
 brew install virtualbox vagrant
 brew install --cask virtualbox-extension-pack
-vagrant plugin install vagrant-hosts 
+vagrant plugin install vagrant-hostmanager 
 ```
-https://github.com/oscar-stack/vagrant-hosts is used to enable DNS for any hosts in the Vagrantfile
+https://github.com/devopsgroup-io/vagrant-hostmanager is used to enable DNS for any hosts in the Vagrantfile
 
 ## Usage
 

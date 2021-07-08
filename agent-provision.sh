@@ -15,3 +15,6 @@ extension_requests:
   pp_role: test
   pp_environment: development
 EOF
+
+/opt/puppetlabs/bin/puppet agent -t
+exit 0
