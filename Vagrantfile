@@ -68,4 +68,18 @@ Vagrant.configure("2") do |config|
     node.vm.provision "shell", path: "agent-provision.sh"
   end
 
+  config.vm.define "kafka-secondary" do |node|
+    node.vm.box = "#{ol8_box_name}"
+    node.vm.box_url = "#{ol8_box_url}"
+    node.vm.hostname = "kafka-secondary.puppetdomain"
+    node.vm.network "private_network", ip: "10.0.0.14"
+    node.vm.provider "virtualbox" do |v|
+      v.memory = 1024
+      v.cpus = 4
+    end
+    node.hostmanager.manage_guest = true
+    node.vm.provision :hostmanager
+    node.vm.provision "shell", path: "agent-provision.sh"
+  end
+
 end
