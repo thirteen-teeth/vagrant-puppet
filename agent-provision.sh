@@ -1,7 +1,7 @@
 #!/bin/bash
 
 dnf -y install https://yum.puppet.com/puppet6-release-el-8.noarch.rpm
-dnf -y install vim bash-completion tree setroubleshoot puppet
+dnf -y install vim bash-completion tree setroubleshoot puppet unzip
 
 if [ -z "$1" ]; then
   my_role='default'
