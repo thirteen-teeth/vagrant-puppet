@@ -3,6 +3,12 @@
 
 start_time="$(date +%s)"
 
+if [ -z "$1" ]; then
+  my_role='default'
+else
+  my_role=$1
+fi
+
 # master is provisioned with file resource copy of user's ~.ssh/id_rsa key, move this to the root user for r10k clone
 # file resources in vagrant are done by the vagrant user so copying the file to /root/ fails
 
@@ -39,6 +45,12 @@ dns_alt_names = puppetserver,master.puppetdomain
 server = master.puppetdomain
 certname = master.puppetdomain
 runinterval = 30m
+EOF
+
+cat << EOF > /etc/puppetlabs/puppet/csr_attributes.yaml
+extension_requests:
+  pp_role: ${my_role}
+  pp_environment: development
 EOF
 
 # autosign agents in the puppetdomain domain
