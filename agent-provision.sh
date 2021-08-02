@@ -23,4 +23,6 @@ extension_requests:
 EOF
 
 /opt/puppetlabs/bin/puppet agent -t
+systemctl start puppet
+systemctl enable puppet
 exit 0
