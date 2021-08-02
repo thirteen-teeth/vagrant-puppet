@@ -35,15 +35,20 @@ dnf -y install https://yum.puppet.com/puppet6-release-el-8.noarch.rpm
 
 dnf -y install puppetserver
 
-# add to, not overwrite
-cat << EOF >> /etc/puppetlabs/puppet/puppet.conf
+cat << EOF > /etc/puppetlabs/puppet/puppet.conf
+[server]
+vardir = /opt/puppetlabs/server/data/puppetserver
+logdir = /var/log/puppetlabs/puppetserver
+rundir = /var/run/puppetlabs/puppetserver
+pidfile = /var/run/puppetlabs/puppetserver/puppetserver.pid
+codedir = /etc/puppetlabs/code
 
 [master]
-dns_alt_names = puppetserver,master.puppetdomain
+dns_alt_names = puppetserver,${HOSTNAME}
 
 [main]
-server = master.puppetdomain
-certname = master.puppetdomain
+server = ${HOSTNAME}
+certname = ${HOSTNAME}
 runinterval = 30m
 EOF
 
