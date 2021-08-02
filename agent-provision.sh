@@ -9,7 +9,7 @@ else
   my_role=$1
 fi
 
-cat << EOF >> /etc/puppetlabs/puppet/puppet.conf
+cat << EOF > /etc/puppetlabs/puppet/puppet.conf
 [main]
 server = master.puppetdomain
 certname = ${HOSTNAME}
