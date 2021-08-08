@@ -1,7 +1,7 @@
 #!/bin/bash
 
 dnf -y install https://yum.puppet.com/puppet6-release-el-8.noarch.rpm
-dnf -y install vim bash-completion tree setroubleshoot puppet unzip
+dnf -y puppet
 
 if [ -z "$1" ]; then
   my_role='default'
@@ -19,7 +19,7 @@ EOF
 cat << EOF > /etc/puppetlabs/puppet/csr_attributes.yaml
 extension_requests:
   pp_role: ${my_role}
-  pp_environment: development
+  pp_environment: vagrant
 EOF
 
 /opt/puppetlabs/bin/puppet agent -t

@@ -34,24 +34,3 @@
   ip: 10.0.0.202
   ram: 2048
   cpus: 4
-- name: 'es-data-01'
-  box: 'oraclelinux/8'
-  script: 'agent-provision.sh'
-  role: 'elasticsearch_data'
-  ip: 10.0.0.203
-  ram: 2048
-  cpus: 4
-- name: 'es-data-02'
-  box: 'oraclelinux/8'
-  script: 'agent-provision.sh'
-  role: 'elasticsearch_data'
-  ip: 10.0.0.204
-  ram: 2048
-  cpus: 4
-- name: 'es-data-03'
-  box: 'oraclelinux/8'
-  script: 'agent-provision.sh'
-  role: 'elasticsearch_data'
-  ip: 10.0.0.205
-  ram: 2048
-  cpus: 4
