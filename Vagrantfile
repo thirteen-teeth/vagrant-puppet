@@ -23,8 +23,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       if servers["script"] == 'master-provision.sh'
         srv.vm.provision "file", source: "~/.ssh/id_rsa", destination: "/tmp/id_rsa"
       end
-      if servers["name"] == 'consul-01'
-        srv.vm.network "forwarded_port", guest: 8500, host: 8500
+      if servers["forward_ports"]
+        servers["forward_ports"].each do |port|
+          srv.vm.network "forwarded_port", guest: port, host: port
+        end
       end
       srv.vm.provision "shell", path: servers["script"], args: servers["role"]
     end

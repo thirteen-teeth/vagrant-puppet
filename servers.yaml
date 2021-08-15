@@ -13,6 +13,8 @@
   ip: 10.0.0.101
   ram: 2048
   cpus: 4
+  forward_ports:
+    - '8500'
 - name: 'os-master-01'
   box: 'opensearch-1.0.0'
   script: 'agent-provision.sh'
