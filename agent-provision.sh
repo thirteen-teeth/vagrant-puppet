@@ -1,7 +1,7 @@
 #!/bin/bash
 
 dnf -y install https://yum.puppet.com/puppet6-release-el-8.noarch.rpm
-dnf -y puppet
+dnf -y install puppet-agent
 
 if [ -z "$1" ]; then
   my_role='default'
