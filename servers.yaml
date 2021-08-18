@@ -15,6 +15,15 @@
   cpus: 4
   forward_ports:
     - '8500'
+- name: 'vault-01'
+  box: 'oraclelinux/8'
+  script: 'vault-provision.sh'
+  role: 'vault'
+  ip: 10.0.0.203
+  ram: 2048
+  cpus: 4
+  forward_ports:
+    - '8200'
 - name: 'os-master-01'
   box: 'opensearch-1.0.0'
   script: 'agent-provision.sh'
@@ -34,12 +43,5 @@
   script: 'agent-provision.sh'
   role: 'opensearch'
   ip: 10.0.0.202
-  ram: 2048
-  cpus: 4
-- name: 'vault-01'
-  box: 'oraclelinux/8'
-  script: 'agent-provision.sh'
-  role: 'vault'
-  ip: 10.0.0.203
   ram: 2048
   cpus: 4
