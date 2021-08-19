@@ -6,6 +6,8 @@
   ip: 10.0.0.100
   ram: 4096
   cpus: 4
+  forward_ports:
+    - '8080'
 - name: 'consul-01'
   box: 'oraclelinux/8'
   script: 'agent-provision.sh'

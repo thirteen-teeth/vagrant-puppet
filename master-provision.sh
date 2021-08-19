@@ -26,6 +26,11 @@ dnf makecache
 dnf -y install vim bash-completion tree git setroubleshoot unzip
 dnf -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
 dnf -y install https://yum.puppet.com/puppet6-release-el-8.noarch.rpm
+
+#for puppetdb
+dnf install -y https://download.postgresql.org/pub/repos/yum/reporpms/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm
+dnf -qy module disable postgresql
+
 #dnf -y install https://yum.theforeman.org/releases/2.4/el8/x86_64/foreman-release.rpm
 #dnf -y install foreman-installer
 
