@@ -27,7 +27,7 @@ dnf -y install vim bash-completion tree git setroubleshoot unzip
 dnf -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
 dnf -y install https://yum.puppet.com/puppet6-release-el-8.noarch.rpm
 
-#for puppetdb
+#for puppetdb because puppetdb/postgresl class doesn't install the right repo
 dnf install -y https://download.postgresql.org/pub/repos/yum/reporpms/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm
 dnf -qy module disable postgresql
 
@@ -83,6 +83,11 @@ EOF
 
 systemctl start puppetserver
 systemctl enable puppetserver
+
+puppet agent -t
+
+systemctl start puppet
+systemctl enable puppet
 
 end_time="$(($(date +%s)-$start_time))"
 running_time=$(date -d $end_time +%H:%M:%S)

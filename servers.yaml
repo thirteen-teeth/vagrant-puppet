@@ -8,6 +8,7 @@
   cpus: 4
   forward_ports:
     - '8080'
+    - '8888'
 - name: 'consul-01'
   box: 'oraclelinux/8'
   script: 'agent-provision.sh'
