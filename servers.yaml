@@ -7,8 +7,8 @@
   ram: 4096
   cpus: 4
   forward_ports:
-    - '8080'
-    - '8888'
+    - '8080' #puppetdb
+    - '8888' #puppetboard
 - name: 'consul-01'
   box: 'oraclelinux/8'
   script: 'agent-provision.sh'
@@ -22,11 +22,21 @@
   box: 'oraclelinux/8'
   script: 'vault-provision.sh'
   role: 'vault'
-  ip: 10.0.0.203
+  ip: 10.0.0.102
   ram: 2048
   cpus: 4
   forward_ports:
     - '8200'
+- name: 'prom-01'
+  box: 'oraclelinux/8'
+  script: 'agent-provision.sh'
+  role: 'prometheus'
+  ip: 10.0.0.103
+  ram: 2048
+  cpus: 4
+  forward_ports:
+    - '9090'
+    - '3000'
 - name: 'os-master-01'
   box: 'opensearch-1.0.0'
   script: 'agent-provision.sh'
