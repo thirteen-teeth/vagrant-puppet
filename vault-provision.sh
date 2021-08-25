@@ -35,7 +35,7 @@ echo $unseal_key > /opt/vault_data/unseal_key
 initial_token=$(grep 'Initial Root Token' /opt/vault_data/full_output.txt | awk '{print $NF}')
 echo $initial_token > /opt/vault_data/initial_token
 export VAULT_TOKEN=$initial_token
-
+set -x
 vault operator unseal $unseal_key
 vault secrets enable consul
 vault secrets enable pki
