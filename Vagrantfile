@@ -2,6 +2,15 @@
 # # vi: set ft=ruby :
 # https://blog.scottlowe.org/2016/01/14/improved-way-yaml-vagrant/
 
+if not Vagrant.has_plugin?('vagrant-hostmanager')
+  abort <<-EOM
+
+please run the following command to install the vagrant-hostmanager plugin:
+vagrant plugin install vagrant-hostmanager
+
+  EOM
+end
+
 Vagrant.require_version ">= 1.6.0"
 VAGRANTFILE_API_VERSION = "2"
 
