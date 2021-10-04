@@ -35,8 +35,8 @@
   ram: 2048
   cpus: 4
   forward_ports:
-    - '9090'
-    - '3000'
+    - '9090' #prometheus
+    - '3000' #grafana
 - name: 'es-master-01'
   box: 'oraclelinux/8'
   script: 'agent-provision.sh'
