@@ -37,24 +37,24 @@
   forward_ports:
     - '9090' #prometheus
     - '3000' #grafana
-- name: 'es-master-01'
-  box: 'oraclelinux/8'
+- name: 'os-master-01'
+  box: 'opensearch-1.0.0'
   script: 'agent-provision.sh'
-  role: 'elasticsearch'
+  role: 'opensearch'
   ip: 10.0.0.200
   ram: 2048
   cpus: 4
-- name: 'es-master-02'
-  box: 'oraclelinux/8'
+- name: 'os-master-02'
+  box: 'opensearch-1.0.0'
   script: 'agent-provision.sh'
-  role: 'elasticsearch'
+  role: 'opensearch'
   ip: 10.0.0.201
   ram: 2048
   cpus: 4
-- name: 'es-master-03'
-  box: 'oraclelinux/8'
+- name: 'os-master-03'
+  box: 'opensearch-1.0.0'
   script: 'agent-provision.sh'
-  role: 'elasticsearch'
+  role: 'opensearch'
   ip: 10.0.0.202
   ram: 2048
   cpus: 4
