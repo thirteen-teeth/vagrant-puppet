@@ -58,3 +58,12 @@
   ip: 10.0.0.202
   ram: 2048
   cpus: 4
+- name: 'os-dashboards-01'
+  box: 'oraclelinux/8'
+  script: 'agent-provision.sh'
+  role: 'opensearch_dashboards'
+  ip: 10.0.0.203
+  ram: 2048
+  cpus: 4
+  forward_ports:
+    - '5601'

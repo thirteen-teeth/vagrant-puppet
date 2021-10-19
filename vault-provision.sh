@@ -40,12 +40,14 @@ vault operator unseal $unseal_key
 vault secrets enable consul
 vault secrets enable pki
 vault secrets tune -max-lease-ttl=87600h pki
+
 vault write -field=certificate pki/root/generate/internal \
       common_name="puppetdomain" \
       ttl=87600h > CA_cert.crt
+
 vault write pki/config/urls \
-      issuing_certificates="$VAULT_ADDR/v1/pki/ca" \
-      crl_distribution_points="$VAULT_ADDR/v1/pki/crl"
+      issuing_certificates="$HOSTNAME/v1/pki/ca" \
+      crl_distribution_points="$HOSTNAME/v1/pki/crl"
 
 vault secrets enable -path=pki_int pki
 vault secrets tune -max-lease-ttl=43800h pki_int
@@ -60,9 +62,15 @@ vault write -format=json pki/root/sign-intermediate csr=@pki_intermediate.csr \
 
 vault write pki_int/intermediate/set-signed certificate=@intermediate.cert.pem
 
+vault write pki_int/config/urls \
+      issuing_certificates="$HOSTNAME/v1/pki_int/ca" \
+      crl_distribution_points="$HOSTNAME/v1/pki_int/crl"
+
+
+#      allowed_domains="puppetdomain" \
+#      allow_subdomains=true \
 vault write pki_int/roles/puppetdomain \
-      allowed_domains="puppetdomain" \
-      allow_subdomains=true \
+      allow_any_name=true \
       max_ttl="720h"
 
 exit 0
