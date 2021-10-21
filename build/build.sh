@@ -2,7 +2,7 @@
 set -x
 
 box_name='opensearch'
-opensearch_version='1.0.0'
+opensearch_version='1.1.0'
 box_full_name="$box_name-$opensearch_version"
 
 #clean up old files
