@@ -28,7 +28,7 @@ systemctl enable puppet
 
 export VAULT_ADDR=http://localhost:8200
 export PATH=$PATH:/usr/local/bin
-vault operator init -key-shares=1 -key-threshold=1 > /opt/vault_data/full_output.txt
+vault operator init -key-shares=1 -key-threshold=1 >> /opt/vault_data/full_output.txt
 
 unseal_key=$(grep 'Unseal Key 1' /opt/vault_data/full_output.txt | awk '{print $NF}')
 echo $unseal_key > /opt/vault_data/unseal_key
